@@ -1,4 +1,3 @@
-# Go to: https://replit.com/@appbrewery/password-generator-start?v=1
 #Password Generator Project
 import random
 letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
@@ -13,14 +12,14 @@ nr_numbers = int(input(f"How many numbers would you like?\n"))
 #Eazy Level - Order not randomised:
 #e.g. 4 letter, 2 symbol, 2 number = JduE&!91
 
-# password = ""
-# for i in range(1, nr_letters + 1):
-#     password += random.choice(letters)
-# for i in range(1, nr_symbols + 1):
-#     password += random.choice(symbols)
-# for i in range(1, nr_numbers + 1):
-#     password += random.choice(numbers)
-# print(password)
+password = ""
+for i in range(1, nr_letters + 1):
+    password += random.choice(letters)
+for i in range(1, nr_symbols + 1):
+    password += random.choice(symbols)
+for i in range(1, nr_numbers + 1):
+    password += random.choice(numbers)
+print(f"A simple password generated is: {password}")
 
 
 #Hard Level - Order of characters randomised:
@@ -32,9 +31,9 @@ for i in range(1, nr_symbols + 1):
     password += random.choice(symbols)
 for i in range(1, nr_numbers + 1):
     password += random.choice(numbers)
-print(password)
+# print(password)
 random.shuffle(password)
-print(password)
+# print(password)
 
 P = ""
 for f in password:
