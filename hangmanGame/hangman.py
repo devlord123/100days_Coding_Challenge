@@ -8,14 +8,11 @@ word_length = len(chosen_word)
 
 end_of_game = False
 lives = 6
-
-
 import hangman_art
 print(hangman_art.logo)
 
 #Testing code
 print('Pssst, the solution is Unknown.')
-
 #Create blanks
 display = []
 for _ in range(word_length):
