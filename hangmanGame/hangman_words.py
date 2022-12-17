@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 word_list = [
 'abruptly', 
 'absurd', 
@@ -430,4 +429,3 @@ word_list = [
 'zodiac', 
 'zombie', 
 ]
->>>>>>> e9d5ab654b36053aeffdf95b3f7d3a0bcc5c31a5
