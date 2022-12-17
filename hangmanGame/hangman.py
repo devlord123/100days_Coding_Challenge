@@ -8,13 +8,10 @@ word_length = len(chosen_word)
 
 end_of_game = False
 lives = 6
-
-
 import hangman_art
 print(hangman_art.logo)
 
 #Testing code
-print('Pssst, the solution is Unknown.')
 
 #Create blanks
 display = []
@@ -43,6 +40,7 @@ while not end_of_game:
         if lives == 0:
             end_of_game = True
             print("You lose.")
+            print(f'And the word is {chosen_word}.')
 
     #Join all the elements in the list and turn it into a String.
     print(f"{' '.join(display)}")
