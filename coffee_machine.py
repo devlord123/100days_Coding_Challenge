@@ -30,6 +30,7 @@ resources = {
     "water": 300,
     "milk": 200,
     "coffee": 100,
+    "money" : 0,
 }
 report = {
     "water": "100ml",
@@ -48,6 +49,7 @@ def resourse(item):
         if res_water > men_water:
             if res_cofee > men_cofee:
                 print("Kindly insert your coin ")
+                return True
             else:
                 print("Sorry there is not enough coffee.")
         else:
@@ -65,6 +67,7 @@ def resourse(item):
             if res_cofee > men_cofee:
                if res_milk > men_milk:
                    print("Kindly insert your coin ")
+                   return True
 
                else:
                    print("Sorry there is not enough Milk.")
@@ -84,6 +87,7 @@ def resourse(item):
             if res_cofee > men_cofee:
                if res_milk > men_milk:
                    print("Kindly insert your coin ")
+                   return True
                else:
                    print("Sorry there is not enough Milk.")
             else:
@@ -110,34 +114,43 @@ def transaction(item):
         balance = payment()
         if cost > balance:
             print("Sorry that's not enough money. Money refunded.")
+            return False
         else:
-            report["money"] = balance
+            report["money"] += cost
             #pprint.pprint(report)
-            if balance > cost:
-                new = balance - cost
-                print(f"Your change is ${new:2}")
+            new = balance - cost
+            new = round(new, 2)
+            print(f"Your change is ${new:2}")
+            return True
+
     elif item == "latte":
         cost = MENU["latte"]["cost"]
         balance = payment()
         if cost > balance:
             print("Sorry that's not enough money. Money refunded.")
+            return False
         else:
-            report["money"] = balance
+            report["money"] += cost
             #pprint.pprint(report)
-            if balance > cost:
-                new = balance - cost
-                print(f"Your change is ${new:2}")
+            new = balance - cost
+            new = round(new, 2)
+            print(f"Your change is ${new:2}")
+            return True
+
     elif item == "cappuccino":
         cost = MENU["espresso"]["cost"]
         balance = payment()
         if cost > balance:
             print("Sorry that's not enough money. Money refunded.")
+            return False
         else:
-            report["money"] = balance
+            report["money"] += cost
             #pprint.pprint(report)
-            if balance > cost:
-                new = balance - cost
-                print(f"Your change is ${new:2}")
+            new = balance - cost
+            new = round(new, 2)
+            print(f"Your change is ${new:2}")
+            return True
+
 
 def make_coffee(item):
     if item == "espresso":
@@ -151,7 +164,7 @@ def make_coffee(item):
         resources["coffee"] = coffee
         resources["money"] = report["money"]
         #pprint.pprint(resources)
-        print(f"Here is your {item}. Enjoy!")
+        print(f"Here is your {item}☕. Enjoy!")
 
     elif item == "latte":
         men_water = MENU["latte"]["ingredients"]["water"]
@@ -168,7 +181,7 @@ def make_coffee(item):
         resources["milk"] = milk
         resources["money"] = report["money"]
         #pprint.pprint(resources)
-        print(f"Here is your {item}. Enjoy!")
+        print(f"Here is your {item}☕. Enjoy!")
     elif item == "cappuccino":
         men_water = MENU["cappuccino"]["ingredients"]["water"]
         res_water = resources["water"]
@@ -184,7 +197,7 @@ def make_coffee(item):
         resources["milk"] = milk
         resources["money"] = report["money"]
         #pprint.pprint(resources)
-        print(f"Here is your {item}. Enjoy!")
+        print(f"Here is your {item}☕. Enjoy!")
 
 
 
@@ -198,22 +211,26 @@ machine = True
 while machine:
     order = input("What would you like? (espresso/latte/cappuccino): ")
     if order == "report":
-        for i, j in report.items():
-            print(f"{i}: {j}")
+        for i, j in resources.items():
+            if resources["money"] == j:
+                print(f"{i}: ${j}")
+            elif resources["coffee"] == j:
+                print(f"{i}: {j}g")
+            else:
+                print(f"{i}: {j}ml")
     elif order == "off":
         machine = False
         print("Shutting Down.")
     if order == "espresso":
-        resourse("espresso")
-        transaction("espresso")
-        make_coffee("espresso")
+        if resourse("espresso") == True:
+            if transaction("espresso") == True:
+                make_coffee("espresso")
     elif order == "latte":
-        resourse("latte")
-        transaction("latte")
-        make_coffee("latte")
+        if resourse("latte") == True:
+            if transaction("latte") == True:
+                make_coffee("latte")
     elif order == "cappuccino":
-        resourse("cappuccino")
-        transaction("cappuccino")
-        make_coffee("cappuccino")
-
+        if resourse("cappuccino") == True:
+            if transaction("cappuccino") == True:
+                make_coffee("cappuccino")
 
