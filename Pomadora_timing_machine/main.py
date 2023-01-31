@@ -6,8 +6,8 @@ RED = "#e7305b"
 GREEN = "#9bdeac"
 YELLOW = "#f7f5dd"
 FONT_NAME = "Courier"
-WORK_MIN = 1
-SHORT_BREAK_MIN = 1
+WORK_MIN = 25
+SHORT_BREAK_MIN = 5
 LONG_BREAK_MIN = 20
 rep = 0
 timer = None
@@ -21,11 +21,9 @@ def reset():
     rep = 0
 
 # ---------------------------- TIMER MECHANISM ------------------------------- #
-def timer():
+def time_func():
     global rep
     rep +=1
-
-
     work_sec = WORK_MIN * 60
     short_sec = SHORT_BREAK_MIN * 60
     long_sec = LONG_BREAK_MIN * 60
@@ -54,7 +52,7 @@ def count_down(count):
         global timer
         timer = screen.after(1000, count_down, count - 1)
     else:
-        timer()
+        time_func()
         marks = ""
         session = math.floor(rep/2)
         for _ in range(session):
@@ -78,7 +76,7 @@ timer_text = canvas.create_text(103, 130, text="00:00", font=(FONT_NAME, 30, "bo
 canvas.grid(column=1, row=2)
 
 
-start_btn = Button(text="Start", command=timer)
+start_btn = Button(text="Start", command=time_func)
 start_btn.grid(column=0, row=3)
 
 check_mark = Label(fg=GREEN, bg=YELLOW)
