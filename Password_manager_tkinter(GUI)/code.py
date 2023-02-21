@@ -1,12 +1,10 @@
-import pyperclip
+
 from tkinter import *
 from tkinter import messagebox
 from random import choice, randint, shuffle
-<<<<<<< HEAD
+
 import json
-=======
-import pyperclip
->>>>>>> 2b4dac14c3e3bfa88559869461d43e42e62d0a16
+
 
 
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
@@ -27,7 +25,7 @@ def generate_password():
     shuffle(password_list)
     gen_pas = "".join(password_list)
     password.insert(0, gen_pas)
-    pyperclip.copy(gen_pas)
+    #pyperclip.copy(gen_pas)
     
 # ---------------------------- SAVE PASSWORD ------------------------------- #
 
