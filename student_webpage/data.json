@@ -1,0 +1,27 @@
+{
+    "owoyemi@gmail.com": {
+        "name": "Owoyemi",
+        "password": "password",
+        "email": "owoyemi@gmail.com"
+    },
+    "olami@gmail.com": {
+        "name": "Adisa",
+        "password": "adis123",
+        "email": "olami@gmail.com"
+    },
+    "olamilekan@gmail.com": {
+        "name": "Olamilekan",
+        "password": "12345",
+        "email": "olamilekan@gmail.com"
+    },
+    "james@gmail.com": {
+        "name": "James Bond",
+        "password": "12345",
+        "email": "james@gmail.com"
+    },
+    "jay@gmail.com": {
+        "name": "John Jay",
+        "password": "12345",
+        "email": "jay@gmail.com"
+    }
+}
