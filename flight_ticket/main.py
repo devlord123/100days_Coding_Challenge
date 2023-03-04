@@ -2,8 +2,8 @@
 # program requirements.
 from data_manager import DataManager
 from flight_search import FlightSearch
-from pprint import pprint
-import requests
+from notification_manager import NotificationManager
+import user
 from datetime import datetime, timedelta
 
 START_LOCATION = 'LON'
@@ -18,6 +18,7 @@ six_months.strftime("%d/%m/%Y")
 
 data = DataManager()
 price = data.get_data()
+#print(price)
 for i in price:
     if i['iataCode'] == "":
         flight = f.flight(i['city'])['locations'][0]['code']
@@ -26,7 +27,23 @@ for i in price:
     else:
         pass
 
+    fly_rate = f.check_flight(
+        START_LOCATION,
+        i['iataCode'],
+        tomorrow,
+        six_months)
 
-for dt in price:
-    cost = f.check_flight(START_LOCATION, dt['iataCode'], tomorrow, six_months)
-    print(cost)
+    #print(fly_rate)
+
+    if fly_rate is None:
+        continue
+
+    if int(fly_rate) < i['lowestPrice']:
+        EMAILS = user.get_user_mails()
+        message = f"The flight rate from London to {i['city']} is now £{fly_rate}. This is soo good for you."
+        link = f"https://www.google.co.uk/flights?hl=en#flt={i['city']}  to book your flight NOW!!!"
+
+        send = NotificationManager()
+        send.send_mails(EMAILS,message,link)
+
+
