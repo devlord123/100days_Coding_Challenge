@@ -1,0 +1,22 @@
+{%extends 'bootstrap/base.html'%}
+
+{%block title%}All data {%endblock%}
+
+
+
+{%block content%}
+<div class="container">
+    <h1>Data Log</h1>
+
+    {%for dt in data%}
+
+    <h3>{{dt.title}}</h3>
+    <i>{{dt.year}}</i>
+    <p>{{dt.description}}</p>
+    <p>{{dt.img_url}}</p>
+{%endfor%}
+
+</div>
+
+
+{%endblock%}
