@@ -1,0 +1,76 @@
+{% extends 'bootstrap/base.html' %}
+{%import 'bootstrap/wtf.html' as wtf%}
+
+{% block content %}
+{% include "header.html" %}
+ 
+  {%if is_edit%}
+
+
+   <!-- Page Header -->
+   <header class="masthead" style="background-image: url('{{ url_for('static', filename='img/edit-bg.jpg')}}')">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="page-heading">
+            <h1>EDIT POST</h1>
+            <span class="subheading">Edit current post</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        
+          <!-- This is where the form will go -->
+          <form action="{{url_for('newPost')}}" method="post">
+          
+             {{ ckeditor.load() }}
+             {{ ckeditor.config(name='body') }}
+            {{wtf.quick_form(form, novalidate=True, button_map={"submit": "primary"})}}
+           
+          </form>
+
+      </div>
+    </div>
+  </div>
+
+  {%else%}
+   <!-- Page Header -->
+   <header class="masthead" style="background-image: url('{{ url_for('static', filename='img/edit-bg.jpg')}}')">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="page-heading">
+            <h1>New Post</h1>
+            <span class="subheading">You're going to make a great blog post!</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        
+          <!-- This is where the form will go -->
+          <form action="{{url_for('newPost')}}" method="post">
+          
+             {{ ckeditor.load() }}
+             {{ ckeditor.config(name='body') }}
+            {{wtf.quick_form(form, novalidate=True, button_map={"submit": "primary"})}}
+           
+          </form>
+
+      </div>
+    </div>
+  </div>
+  {%endif%}
+{% include "footer.html" %}
+{% endblock %}

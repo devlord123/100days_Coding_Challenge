@@ -17,12 +17,12 @@
 #     },
 #     {
 #         "course": "Bio",
-#         "score": 70,
+#         "score": 40,
 #         "unit": 3
 #     },
 #     {
 #         "course": "Sci",
-#         "score": 70,
+#         "score": 40,
 #         "unit": 3
 #     },
 #     {
@@ -37,12 +37,12 @@
 #     },
 #     {
 #         "course": "Eng",
-#         "score": 60,
+#         "score": 40,
 #         "unit": 3
 #     },
 #     {
 #         "course": "Eng",
-#         "score": 67,
+#         "score": 47,
 #         "unit": 1
 #     },
 #     {
@@ -53,7 +53,7 @@
 #     {
 #         "course": "Eng",
 #         "score": 70,
-#         "unit": 4
+#         "unit": 3
 #     }
 # ]
 
@@ -99,15 +99,16 @@ def update_data(course, score, unit):
 
 new_course = True
 table = []
+i = 0
 while new_course:
+
     course = input("Provide the course title: ")
     score = int(input(f"whats your score in {course}? "))
     unit = int(input(f"Whats {course} unit? "))
 
     table.append(update_data(course, score, unit))
-
-    new = input("Do you want to add another course?'yes' or 'no' ")
-    if new == "no":
+    i += 1
+    if i == 3:
        total = calculator(table)
        total_unit = unit_cal(table)
        gp = total / total_unit
